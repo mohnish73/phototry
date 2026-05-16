@@ -22,15 +22,26 @@ class MainActivity : FlutterActivity() {
                         result.success(null)
                     }
                     "stopUpload" -> {
-                        UploadService.isRunning = false
+                        // UploadService runs in a separate process — we cannot touch its
+                        // static fields. stopService() triggers onDestroy() in that process,
+                        // which sets isRunning = false and stops the upload thread.
                         stopService(Intent(this, UploadService::class.java))
-                        val prefs = getSharedPreferences(UploadService.PREFS_NAME, Context.MODE_PRIVATE)
-                        prefs.edit().putBoolean(UploadService.KEY_RUNNING, false)
-                            .putString(UploadService.KEY_STATUS, "Upload stopped.").apply()
+                        // Update our own copy so the UI reflects the stopped state immediately.
+                        getSharedPreferences(UploadService.PREFS_NAME, Context.MODE_PRIVATE)
+                            .edit()
+                            .putBoolean(UploadService.KEY_RUNNING, false)
+                            .putString(UploadService.KEY_STATUS, "Upload stopped.")
+                            .apply()
                         result.success(null)
                     }
                     "getProgress" -> {
-                        val prefs = getSharedPreferences(UploadService.PREFS_NAME, Context.MODE_PRIVATE)
+                        // MODE_MULTI_PROCESS forces Android to reload from disk if the
+                        // :upload process has modified the file since our last read.
+                        @Suppress("DEPRECATION")
+                        val prefs = getSharedPreferences(
+                            UploadService.PREFS_NAME,
+                            Context.MODE_PRIVATE or Context.MODE_MULTI_PROCESS
+                        )
                         result.success(mapOf(
                             "uploaded" to prefs.getInt(UploadService.KEY_UPLOADED, 0),
                             "total"    to prefs.getInt(UploadService.KEY_TOTAL, 0),
@@ -41,9 +52,10 @@ class MainActivity : FlutterActivity() {
                     "requestBatteryOptimization" -> {
                         val pm = getSystemService(POWER_SERVICE) as PowerManager
                         if (!pm.isIgnoringBatteryOptimizations(packageName)) {
-                            val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
-                            intent.data = Uri.parse("package:$packageName")
-                            startActivity(intent)
+                            startActivity(
+                                Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
+                                    .also { it.data = Uri.parse("package:$packageName") }
+                            )
                         }
                         result.success(null)
                     }

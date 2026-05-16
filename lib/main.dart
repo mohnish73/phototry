@@ -121,52 +121,7 @@ class _UploadScreenState extends State<UploadScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.cloud_upload_outlined,
-                    size: 96, color: Colors.deepPurple),
-                const SizedBox(height: 24),
-                Text(
-                  'Gallery Backup',
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineMedium
-                      ?.copyWith(fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'Upload continues even when the app is closed.',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium
-                      ?.copyWith(color: Colors.grey[600]),
-                ),
-                const SizedBox(height: 48),
-                if (_isUploading) ...[
-                  LinearProgressIndicator(
-                    value: _total > 0 ? progress : null,
-                    minHeight: 8,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    '$_uploaded / $_total uploaded',
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  const SizedBox(height: 8),
-                ],
-                if (_statusMessage.isNotEmpty)
-                  Text(
-                    _statusMessage,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: _statusMessage.contains('denied') ||
-                              _statusMessage.contains('stopped') ||
-                              _statusMessage.contains('Error')
-                          ? Colors.red
-                          : Colors.grey[700],
-                    ),
-                  ),
-                const SizedBox(height: 32),
+
                 SizedBox(
                   width: double.infinity,
                   height: 54,
@@ -192,6 +147,8 @@ class _UploadScreenState extends State<UploadScreen> {
                     ),
                   ),
                 ),
+
+
                 if (_isUploading) ...[
                   const SizedBox(height: 12),
                   TextButton(
@@ -200,6 +157,8 @@ class _UploadScreenState extends State<UploadScreen> {
                         style: TextStyle(color: Colors.red)),
                   ),
                 ],
+
+
               ],
             ),
           ),

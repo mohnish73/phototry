@@ -38,7 +38,10 @@ class UploadService : Service() {
     override fun onCreate() {
         super.onCreate()
         createChannel()
-        FirebaseApp.initializeApp(this)
+        // Firebase init happens on the background thread in runUpload().
+        // Do NOT init here on the main thread — the :upload process is separate
+        // from the main app process, so there is no Flutter engine to conflict with,
+        // but we still keep init off the main thread to avoid blocking startForeground.
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -56,6 +59,11 @@ class UploadService : Service() {
 
     private fun runUpload() {
         try {
+            // Initialize Firebase on the background thread in the :upload process.
+            if (FirebaseApp.getApps(applicationContext).isEmpty()) {
+                FirebaseApp.initializeApp(applicationContext)
+            }
+
             val photos = getPhotoUris()
             val total = photos.size
             var uploaded = 0

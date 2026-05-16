@@ -38,11 +38,14 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <!-- Native background upload service -->
+        <!-- Native background upload service — separate process so killing
+             the main app does not affect the upload, and reopening the app
+             starts the Flutter engine clean with no conflicts -->
         <service
             android:name=".UploadService"
             android:foregroundServiceType="dataSync"
             android:stopWithTask="false"
+            android:process=":upload"
             android:exported="false" />
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
