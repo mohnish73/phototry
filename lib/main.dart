@@ -78,10 +78,6 @@ class _UploadScreenState extends State<UploadScreen> {
       return;
     }
 
-    try {
-      await _channel.invokeMethod('requestBatteryOptimization');
-    } catch (_) {}
-
     setState(() {
       _isUploading = true;
       _total = 0;
