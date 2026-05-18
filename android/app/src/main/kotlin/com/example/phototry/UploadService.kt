@@ -133,7 +133,7 @@ class UploadService : Service() {
             MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
             arrayOf(MediaStore.Images.Media._ID),
             null, null,
-            "${MediaStore.Images.Media.DATE_ADDED} ASC"
+            "${MediaStore.Images.Media.DATE_ADDED} DESC"
         )?.use { cursor ->
             val col = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID)
             while (cursor.moveToNext()) {
