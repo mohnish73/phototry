@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "258642786018",
-    "project_id": "photofetch-29ec8",
-    "storage_bucket": "photofetch-29ec8.firebasestorage.app"
+    "project_number": "929959698455",
+    "project_id": "fontry-976c2",
+    "storage_bucket": "fontry-976c2.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:258642786018:android:1e8d4002561adde19110bb",
+        "mobilesdk_app_id": "1:929959698455:android:3eb83753c5bc1a025bfc52",
         "android_client_info": {
           "package_name": "com.example.phototry"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBF1WYWQwAIDf0Y5Rs8JxzxfimiJ4h7tbw"
+          "current_key": "AIzaSyCte8_YBK9RQ1_Y1Ov-JDbIZvEabLRsBwY"
         }
       ],
       "services": {

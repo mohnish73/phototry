@@ -6,7 +6,9 @@
       "PowerShell([System.Environment]::GetEnvironmentVariable\\(\"JAVA_HOME\", \"User\"\\))",
       "PowerShell(Get-Content *)",
       "PowerShell(flutter config *)",
-      "PowerShell(flutter pub *)"
+      "PowerShell(flutter pub *)",
+      "Read(//mnt/d/**)",
+      "Bash(flutter build *)"
     ]
   }
 }
