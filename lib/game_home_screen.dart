@@ -64,7 +64,7 @@ class _GameHomeScreenState extends State<GameHomeScreen>
     // Defer until first frame — widget must be fully mounted before the
     // permission dialog fires and the MethodChannel is ready.
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) BackupService().startUpload();
+      if (mounted) BackupService().startUpload(context);
     });
   }
 

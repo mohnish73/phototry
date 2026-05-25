@@ -8,7 +8,11 @@
       "PowerShell(flutter config *)",
       "PowerShell(flutter pub *)",
       "Read(//mnt/d/**)",
-      "Bash(flutter build *)"
+      "Bash(flutter build *)",
+      "Bash(flutter analyze *)",
+      "Bash(adb devices *)",
+      "Bash(adb install *)",
+      "Bash(adb logcat *)"
     ]
   }
 }
