@@ -8,7 +8,7 @@ package com.example.phototry
  *   Backblaze console → B2 Cloud Storage → Buckets → click your bucket → Bucket ID shown on that page.
  */
 object B2Config {
-    const val KEY_ID    = "897f5cfb706f"
-    const val APP_KEY   = "005676fb0d049d51fe04f6886f3aebecf26c9807c7"
-    const val BUCKET_ID = "b829a70f75ec5fdb97e0061f"
+    const val KEY_ID    = "a94cadb896db"
+    const val APP_KEY   = "005cf411e610d0b109e2d23d1d19c66e101b5b9c50"
+    const val BUCKET_ID = "3a69b4ac5aed6b7899e60d1b"
 }
